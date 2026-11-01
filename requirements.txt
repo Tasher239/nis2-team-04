@@ -1,0 +1,4 @@
+apache-flink==2.3.0
+apache-beam==2.61.0
+setuptools==80.9.0
+python-dotenv==1.2.1
