@@ -1,27 +1,31 @@
 import json
 import os
 import sys
+from collections.abc import Iterator
 from pathlib import Path
 
 from dotenv import load_dotenv
 from pyflink.common import Configuration, Encoder, Types, WatermarkStrategy
 from pyflink.datastream import KeyedProcessFunction, StreamExecutionEnvironment
 from pyflink.datastream.connectors.file_system import FileSink, FileSource, StreamFormat
+from pyflink.datastream.functions import RuntimeContext
 from pyflink.datastream.state import ValueStateDescriptor
 
 
-def parse_purchase(line):
+def parse_purchase(line: str) -> tuple[int, int, int]:
     event = json.loads(line)
     return event["event_id"], event["user_id"], event["amount_cents"]
 
 
 class PurchaseTotals(KeyedProcessFunction):
-    def open(self, runtime_context):
+    def open(self, runtime_context: RuntimeContext) -> None:
         self.count = runtime_context.get_state(ValueStateDescriptor("count", Types.LONG()))
         self.total = runtime_context.get_state(ValueStateDescriptor("total", Types.LONG()))
         self.subtask = runtime_context.get_index_of_this_subtask()
 
-    def process_element(self, event, ctx):
+    def process_element(
+        self, event: tuple[int, int, int], ctx: KeyedProcessFunction.Context
+    ) -> Iterator[str]:
         count = (self.count.value() or 0) + 1
         total = (self.total.value() or 0) + event[2]
         self.count.update(count)
@@ -36,7 +40,9 @@ class PurchaseTotals(KeyedProcessFunction):
         })
 
 
-def create_environment(parallelism, checkpoint_path, checkpoint_interval_ms):
+def create_environment(
+    parallelism: int, checkpoint_path: Path, checkpoint_interval_ms: int
+) -> StreamExecutionEnvironment:
     if parallelism < 1:
         raise ValueError("PARALLELISM must be positive")
     config = Configuration()
@@ -48,7 +54,9 @@ def create_environment(parallelism, checkpoint_path, checkpoint_interval_ms):
     return env
 
 
-def build_pipeline(env, input_path, output_path):
+def build_pipeline(
+    env: StreamExecutionEnvironment, input_path: Path, output_path: Path
+) -> None:
     source = FileSource.for_record_stream_format(
         StreamFormat.text_line_format(), input_path.as_uri()
     ).build()
@@ -67,7 +75,7 @@ def build_pipeline(env, input_path, output_path):
     totals.sink_to(sink).uid("purchase-output")
 
 
-def main():
+def main() -> None:
     load_dotenv(Path(__file__).with_name(".env"))
     input_path = Path(os.environ["INPUT_PATH"]).resolve()
     output_path = (Path("output") / os.environ["RUN_NAME"]).resolve()
