@@ -12,11 +12,6 @@ bash setup.sh
 source .venv/bin/activate
 ```
 
-Скрипт `setup.sh` создает `.venv` и устанавливает зависимости.
-Версия setuptools для сборки закреплена в `build-constraints.txt`,
-чтобы установка Apache Beam не падала из-за отсутствия `pkg_resources`.
-Python 3.12 и Java 17 нужно установить заранее.
-
 На macOS выбрать установленный JDK 17:
 
 ```sh
