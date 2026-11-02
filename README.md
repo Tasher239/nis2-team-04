@@ -8,10 +8,14 @@
 Python 3.12, Java 17. Зависимости - в `requirements.txt`.
 
 ```sh
-python3.12 -m venv .venv
+bash setup.sh
 source .venv/bin/activate
-python -m pip install -r requirements.txt
 ```
+
+Скрипт `setup.sh` создает `.venv` и устанавливает зависимости.
+Версия setuptools для сборки закреплена в `build-constraints.txt`,
+чтобы установка Apache Beam не падала из-за отсутствия `pkg_resources`.
+Python 3.12 и Java 17 нужно установить заранее.
 
 На macOS выбрать установленный JDK 17:
 
