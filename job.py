@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import time
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -37,6 +38,7 @@ class PurchaseTotals(KeyedProcessFunction):
             "purchase_count": count,
             "total_cents": total,
             "subtask": self.subtask,
+            "processed_at_ns": time.time_ns(),
         })
 
 
@@ -87,7 +89,13 @@ def main() -> None:
 
     env = create_environment(parallelism, checkpoint_path, checkpoint_interval_ms)
     build_pipeline(env, input_path, output_path)
+    # Keep command records outside the sink directory until the sink creates it.
+    commands = [{"event": "execute_requested", "time_ns": time.time_ns()}]
     result = env.execute("purchase-totals")
+    commands.append({"event": "job_finished", "time_ns": time.time_ns()})
+    (output_path / "commands.jsonl").write_text(
+        "".join(json.dumps(command) + "\n" for command in commands)
+    )
     metadata = {
         "job_id": str(result.get_job_id()),
         "net_runtime_ms": result.get_net_runtime(),

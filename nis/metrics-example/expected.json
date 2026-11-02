@@ -1,0 +1,9 @@
+{
+  "processed_records": 5,
+  "pause_s": 4.0,
+  "recovery_s": 2.0,
+  "throughput_window_s": 10,
+  "events_in_window": 3,
+  "window_complete": true,
+  "throughput_events_s": 0.3
+}
