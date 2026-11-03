@@ -1,7 +1,9 @@
 import json
 from pathlib import Path
 
-from flink_recovery.data.run_directory import RunDirectory
+import pytest
+
+from flink_recovery.data.run_directory import RunDirectory, portable_path
 from flink_recovery.domain.journal import CommandEvent, CommandRecord
 
 
@@ -41,3 +43,20 @@ def test_metadata_round_trip(tmp_path: Path) -> None:
     )
     directory.write_metadata(metadata)
     assert directory.read_metadata(RunMetadata) == metadata
+
+
+def test_paths_inside_working_directory_are_relative(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    assert portable_path(tmp_path / "output" / "savepoints") == "output/savepoints"
+    assert portable_path(Path("output/run")) == "output/run"
+
+
+def test_failure_text_hides_working_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    directory = RunDirectory(tmp_path / "run")
+    directory.write_failure(f'File "{tmp_path.resolve()}/src/module.py", line 1')
+    assert directory.failure_path.read_text() == 'File "src/module.py", line 1'

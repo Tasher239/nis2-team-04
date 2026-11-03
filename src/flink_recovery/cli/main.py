@@ -5,7 +5,11 @@ from typing import Annotated
 import typer
 
 from flink_recovery.config import Settings
-from flink_recovery.constants import PROTECTED_INPUT
+from flink_recovery.constants import (
+    DEFAULT_RESTORE_PARALLELISM,
+    DEFAULT_STOP_AFTER_S,
+    PROTECTED_INPUT,
+)
 from flink_recovery.data.generator import PurchaseGenerator
 from flink_recovery.data.jsonl import JsonLinesReader
 from flink_recovery.data.run_directory import RunDirectory
@@ -34,10 +38,23 @@ def generate() -> None:
 
 
 @app.command()
-def run() -> None:
+def run(savepoint: Annotated[Path | None, typer.Option()] = None) -> None:
     from flink_recovery.streaming.runner import JobRunner
 
-    typer.echo(JobRunner(Settings()).run().model_dump_json(indent=2))
+    typer.echo(JobRunner(Settings()).run(savepoint).model_dump_json(indent=2))
+
+
+@app.command()
+def recovery_smoke(
+    restore_parallelism: Annotated[int, typer.Option(min=1)] = DEFAULT_RESTORE_PARALLELISM,
+    stop_after_s: Annotated[float, typer.Option(min=1)] = DEFAULT_STOP_AFTER_S,
+) -> None:
+    """Stop with a savepoint, restore, validate and measure one local experiment."""
+    from flink_recovery.streaming.smoke import RecoverySmoke
+
+    report = RecoverySmoke(Settings()).run(restore_parallelism, stop_after_s)
+    typer.echo(report.model_dump_json(indent=2))
+    raise typer.Exit(0 if report.check.ok else 1)
 
 
 @app.command()

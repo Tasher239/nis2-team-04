@@ -1,0 +1,12 @@
+{
+  "job_id": "9d73a53ddf356dee911f6f9d994891e5",
+  "parallelism": 2,
+  "savepoint_path": "output/savepoints/kt1-rescale-2to4-v3/savepoint-9d73a5-408f8c0b6cbe",
+  "savepoint_bytes": 73798,
+  "files": {
+    "8a65fa63-cedf-49a6-bb34-f0a55582e8bf": 32542,
+    "_metadata": 7226,
+    "8db2d29d-79ff-4774-b72a-e06013583e76": 34030
+  },
+  "format": "canonical"
+}

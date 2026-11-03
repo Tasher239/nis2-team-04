@@ -1,0 +1,17 @@
+[
+  {
+    "path": "data/generated/purchases.jsonl",
+    "bytes": 5769072,
+    "sha256": "69775deb2e1df2f2f1512c09229f9af98438bdfc282d40dd600fff80614ab221"
+  },
+  {
+    "path": "output/kt1-restart-2to2-v3/2026-11-03--12/part-526c0f4f-21f4-4b19-8a10-ca43c2483f22-0",
+    "bytes": 7342253,
+    "sha256": "7c1ebee0f49c539d17840c197806380e148900f2704be7ac4dae7279340f0b6b"
+  },
+  {
+    "path": "output/kt1-restart-2to2-v3/2026-11-03--12/part-9ba018b0-f900-49e6-b3c4-9bd2f2f15d89-0",
+    "bytes": 6997479,
+    "sha256": "8251d069d9ae65b637d2a8fe2df8f7dccb3213def3bad50485db364ac52e3564"
+  }
+]

@@ -7,6 +7,8 @@ from pydantic import BaseModel, ConfigDict, NonNegativeInt
 
 class CommandEvent(StrEnum):
     EXECUTE_REQUESTED = "execute_requested"
+    STOP_REQUESTED = "stop_requested"
+    SAVEPOINT_COMPLETED = "savepoint_completed"
     RESTORE_REQUESTED = "restore_requested"
     JOB_FINISHED = "job_finished"
 

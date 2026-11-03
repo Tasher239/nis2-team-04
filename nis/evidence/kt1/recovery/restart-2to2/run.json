@@ -1,0 +1,7 @@
+{
+  "job_id": "c1d9b8710e2e38fffc03fd75763abe85",
+  "net_runtime_ms": 21163,
+  "parallelism": 2,
+  "checkpoint_directory": "output/checkpoints",
+  "restored_from": "output/savepoints/kt1-restart-2to2-v3/savepoint-c233b1-f905e7392fa9"
+}
