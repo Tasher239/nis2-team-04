@@ -1,0 +1,6 @@
+{
+  "job_id": "e85910019ac2727a9ccbd41008e16d81",
+  "net_runtime_ms": 42963,
+  "parallelism": 2,
+  "checkpoint_directory": "output/checkpoints"
+}

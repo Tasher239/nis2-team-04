@@ -1,45 +1,47 @@
 # Flink: rescaling и восстановление
 
-Задание [P14-B](https://distsys.ru/osukhoroslov/nis2/src/branch/main/project-tasks/p14-b-flink-rescaling-recovery.md).
-Команда 4: Асадуллин Айдар, Костин Даниил, Поляков Иван.
+**Проектное задание:** [P14-B. Flink: rescaling и восстановление](https://distsys.ru/osukhoroslov/nis2/src/branch/main/project-tasks/p14-b-flink-rescaling-recovery.md)
 
-## Окружение
+**Участники:**
 
-Python 3.12, Java 17. Зависимости - в `requirements.txt`.
+- Костин Даниил
+- Асадуллин Айдар
+- Поляков Иван
 
-```sh
-bash setup.sh
-source .venv/bin/activate
-```
+## Сокращенный запуск
 
-На macOS выбрать установленный JDK 17:
+Нужны Python 3.12, JDK 17 и [uv](https://docs.astral.sh/uv/).
 
-```sh
+```text
+uv sync
+cp .env.example .env
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
+uv run flink-recovery generate
+uv run flink-recovery run
+uv run flink-recovery check
+uv run flink-recovery metrics
+uv run pytest
 ```
 
-## Контрольный запуск
+Параметры запуска читаются из `.env` (образец - `.env.example`) и при необходимости
+переопределяются переменными окружения. `generate` записывает воспроизводимый вход
+в `INPUT_PATH`, `run` выполняет задание Flink для `RUN_NAME`, `check` сверяет выход
+приемника с исходными событиями и завершается с кодом 1 при расхождениях,
+`metrics` считает паузу, время восстановления и пропускную способность.
+Каталог запуска `output/<RUN_NAME>/` содержит выходные файлы приемника, журнал
+команд `commands.jsonl` и параметры запуска `run.json`.
 
-Flink запускается локально вместе с `job.py`.
-[generate.py](generate.py) записывает вход в `INPUT_PATH`: `USER_COUNT` покупателей
-по `PURCHASES_PER_USER` покупок. Параметры задаются в `.env`.
+Разбор проверок, ожидаемые и полученные результаты:
+[контрольная точка 1](nis/checkpoints/01.md).
 
-```sh
-python generate.py
-python job.py
-python check.py
-```
+## Навигация
 
-Результаты сохраняются в `output/<RUN_NAME>/`. Перед повторным запуском измените `RUN_NAME` в [.env](.env).
-
-## Журнал и метрики
-
-`job.py` сохраняет время обработки покупок и журнал запуска, а `metrics.py` читает их и рассчитывает метрики.
-После завершения задания выполните `python metrics.py output/<RUN_NAME>`; чтобы сохранить отчет, добавьте `> output/<RUN_NAME>/metrics.json`.
-Порядок запуска, описание файлов и метрик, а также результаты проверок приведены в [разделе "Метрики" отчета КТ1](nis/checkpoints/01.md#метрики).
-
-## Материалы
-
-1. [Описание проекта](nis/project.md).
-2. [План эксперимента](nis/experiment-plan.md).
-3. [КТ1: контрольный пример](nis/checkpoints/01.md).
+- [Описание проекта](nis/project.md)
+- [План эксперимента](nis/experiment-plan.md)
+- [Контрольная точка 1](nis/checkpoints/01.md)
+- Код: [src/flink_recovery](src/flink_recovery)
+- Тесты: [tests](tests)
+- Данные: [data/purchases.jsonl](data/purchases.jsonl), крупные входы генерируются командой `generate`
+- Архитектура кода: [docs/architecture.md](docs/architecture.md)
+- Что делает код: [docs/code-overview.md](docs/code-overview.md)

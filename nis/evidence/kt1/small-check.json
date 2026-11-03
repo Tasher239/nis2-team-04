@@ -1,0 +1,8 @@
+{
+  "missing_event_ids": [],
+  "unexpected_event_ids": [],
+  "duplicate_events": 0,
+  "event_errors": 0,
+  "aggregate_errors": [],
+  "ok": true
+}
