@@ -1,6 +1,6 @@
-# Flink: rescaling и восстановление
+# Flink: рейскейлинг и восстановление
 
-**Проектное задание:** [P14-B. Flink: rescaling и восстановление](https://distsys.ru/osukhoroslov/nis2/src/branch/main/project-tasks/p14-b-flink-rescaling-recovery.md)
+**Проектное задание:** [P14-B. Flink: рейскейлинг и восстановление](https://distsys.ru/osukhoroslov/nis2/src/branch/main/project-tasks/p14-b-flink-rescaling-recovery.md)
 
 **Участники:**
 
@@ -8,7 +8,7 @@
 - Костин Даниил
 - Поляков Иван
 
-## Сокращенный запуск
+## Запуск
 
 Нужны Python 3.12, JDK 17 и [uv](https://docs.astral.sh/uv/).
 
@@ -24,7 +24,7 @@ uv run flink-recovery metrics
 uv run pytest
 ```
 
-Параметры находятся в `.env`; их можно переопределить переменными окружения.
+Параметры находятся в `.env`, их можно переопределить переменными окружения.
 `generate` создает вход, `run` запускает Flink, `check` сверяет выход с входом,
 а `metrics` считает паузу, время восстановления и throughput. Результаты лежат
 в `output/<RUN_NAME>/`: выходные файлы, `commands.jsonl` и `run.json`.
@@ -48,8 +48,7 @@ savepoint, измеряет снимок, восстанавливает зад�
 Для этого сохраняются исходные `INPUT_PATH`, `RUN_NAME`, выходной каталог и нужный
 `PARALLELISM`. На один каталог допускается одно восстановление.
 
-Разбор проверок, ожидаемые и полученные результаты:
-[контрольная точка 1](nis/checkpoints/01.md).
+[КТ1](nis/checkpoints/01.md)
 
 ## Навигация
 

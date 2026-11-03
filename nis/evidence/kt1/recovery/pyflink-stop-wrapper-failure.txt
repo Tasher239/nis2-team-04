@@ -25,5 +25,3 @@ org.apache.flink.api.python.shaded.py4j.Py4JException: Method stopWithSavepoint(
 	at org.apache.flink.api.python.shaded.py4j.commands.CallCommand.execute(CallCommand.java:79)
 	at org.apache.flink.api.python.shaded.py4j.GatewayConnection.run(GatewayConnection.java:238)
 	at java.base/java.lang.Thread.run(Thread.java:840)
-
-
