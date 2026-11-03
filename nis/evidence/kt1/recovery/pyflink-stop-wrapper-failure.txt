@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "src/flink_recovery/streaming/smoke.py", line 26, in run
+    savepoint = JobRunner(settings).stop_with_savepoint(stop_after_s)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "src/flink_recovery/streaming/runner.py", line 130, in stop_with_savepoint
+    uri = wait_for(client.stop_with_savepoint(False, target.absolute().as_uri()))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".venv/lib/python3.12/site-packages/pyflink/common/job_client.py", line 84, in stop_with_savepoint
+    self._j_job_client.stopWithSavepoint(advance_to_end_of_event_time, savepoint_directory),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".venv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File ".venv/lib/python3.12/site-packages/pyflink/util/exceptions.py", line 162, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File ".venv/lib/python3.12/site-packages/py4j/protocol.py", line 330, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o169.stopWithSavepoint. Trace:
+org.apache.flink.api.python.shaded.py4j.Py4JException: Method stopWithSavepoint([class java.lang.Boolean, class java.lang.String]) does not exist
+	at org.apache.flink.api.python.shaded.py4j.reflection.ReflectionEngine.getMethod(ReflectionEngine.java:321)
+	at org.apache.flink.api.python.shaded.py4j.reflection.ReflectionEngine.getMethod(ReflectionEngine.java:329)
+	at org.apache.flink.api.python.shaded.py4j.Gateway.invoke(Gateway.java:274)
+	at org.apache.flink.api.python.shaded.py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at org.apache.flink.api.python.shaded.py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at org.apache.flink.api.python.shaded.py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.base/java.lang.Thread.run(Thread.java:840)

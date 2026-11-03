@@ -1,0 +1,27 @@
+[
+  {
+    "path": "data/generated/purchases.jsonl",
+    "bytes": 5769072,
+    "sha256": "69775deb2e1df2f2f1512c09229f9af98438bdfc282d40dd600fff80614ab221"
+  },
+  {
+    "path": "output/kt1-rescale-2to4-v3/2026-11-03--12/part-42b3b47e-ce2f-475a-b971-b2946e06fa8b-0",
+    "bytes": 5316840,
+    "sha256": "c299b17bd404b5fcb841e48e49d074c018e0e7c714680c1c89cef39095c9898e"
+  },
+  {
+    "path": "output/kt1-rescale-2to4-v3/2026-11-03--12/part-a3c3dc02-b6e7-4d68-a0f2-fc5b5d00fde6-0",
+    "bytes": 1941311,
+    "sha256": "3fbf313a340953fc3f43373c200bdeaeec54e6aa1e8e27887a44389d021eb621"
+  },
+  {
+    "path": "output/kt1-rescale-2to4-v3/2026-11-03--12/part-c334fa01-44c8-4bdc-b4b2-b5b117fc58f4-0",
+    "bytes": 4939412,
+    "sha256": "8418a6fb7ff1eb528fb51cb9b5e78a3de9230d510b9636e2cc87f02b75f4e394"
+  },
+  {
+    "path": "output/kt1-rescale-2to4-v3/2026-11-03--12/part-fd895c3d-346b-4614-896d-c854a3798131-0",
+    "bytes": 2142169,
+    "sha256": "e178bb184b4ff19fe37b85b962df8d95513ae00918744aa3123014e1da8e0137"
+  }
+]

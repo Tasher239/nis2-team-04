@@ -1,0 +1,7 @@
+{
+  "job_id": "b3858703d8ff3274c9b0f06f33a8e647",
+  "net_runtime_ms": 9483,
+  "parallelism": 4,
+  "checkpoint_directory": "output/checkpoints",
+  "restored_from": "output/savepoints/kt1-rescale-2to4-v3/savepoint-9d73a5-408f8c0b6cbe"
+}

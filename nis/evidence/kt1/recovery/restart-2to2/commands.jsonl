@@ -1,0 +1,5 @@
+{"event":"execute_requested","time_ns":1793697114338461000}
+{"event":"stop_requested","time_ns":1793697125741147000}
+{"event":"savepoint_completed","time_ns":1793697133689865000}
+{"event":"restore_requested","time_ns":1793697133843429000}
+{"event":"job_finished","time_ns":1793697155555349000}

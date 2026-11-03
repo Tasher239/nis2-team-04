@@ -1,0 +1,6 @@
+{"event_id":42734,"user_id":734,"amount_cents":4942,"purchase_count":43,"total_cents":188879,"subtask":0,"processed_at_ns":1793697133192387000}
+{"event_id":42738,"user_id":738,"amount_cents":3555,"purchase_count":43,"total_cents":218729,"subtask":0,"processed_at_ns":1793697133192402000}
+{"event_id":42740,"user_id":740,"amount_cents":8474,"purchase_count":43,"total_cents":236457,"subtask":0,"processed_at_ns":1793697133192416000}
+{"event_id":42742,"user_id":742,"amount_cents":6563,"purchase_count":43,"total_cents":208435,"subtask":1,"processed_at_ns":1793697136303323000}
+{"event_id":42744,"user_id":744,"amount_cents":6204,"purchase_count":43,"total_cents":202624,"subtask":1,"processed_at_ns":1793697136306831000}
+{"event_id":42746,"user_id":746,"amount_cents":1738,"purchase_count":43,"total_cents":199897,"subtask":1,"processed_at_ns":1793697136331030000}

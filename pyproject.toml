@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flink-recovery"
+version = "0.1.0"
+description = "Flink rescaling and recovery: reproducible purchase pipeline with independent correctness checks and metrics"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "apache-flink==2.3.0",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "typer>=0.12",
+]
+
+[project.scripts]
+flink-recovery = "flink_recovery.cli.main:app"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.7",
+]
+
+[tool.uv]
+# apache-flink resolves a build of its own transitive dependencies; pin the
+# setuptools version those builds were verified with (formerly `--build-constraint`).
+build-constraint-dependencies = ["setuptools==80.9.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flink_recovery"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]

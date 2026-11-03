@@ -1,0 +1,52 @@
+{
+  "input_path": "data/generated/purchases.jsonl",
+  "input_events": 100000,
+  "stop_after_s": 10.0,
+  "initial_parallelism": 2,
+  "restore_parallelism": 4,
+  "savepoint": {
+    "job_id": "9d73a53ddf356dee911f6f9d994891e5",
+    "parallelism": 2,
+    "savepoint_path": "output/savepoints/kt1-rescale-2to4-v3/savepoint-9d73a5-408f8c0b6cbe",
+    "savepoint_bytes": 73798,
+    "files": {
+      "8a65fa63-cedf-49a6-bb34-f0a55582e8bf": 32542,
+      "_metadata": 7226,
+      "8db2d29d-79ff-4774-b72a-e06013583e76": 34030
+    },
+    "format": "canonical"
+  },
+  "restored_run": {
+    "job_id": "b3858703d8ff3274c9b0f06f33a8e647",
+    "net_runtime_ms": 9483,
+    "parallelism": 4,
+    "checkpoint_directory": "output/checkpoints",
+    "restored_from": "output/savepoints/kt1-rescale-2to4-v3/savepoint-9d73a5-408f8c0b6cbe"
+  },
+  "records_before_restore": 41815,
+  "records_after_restore": 58185,
+  "users_before_restore": 1000,
+  "subtasks_after_restore": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "check": {
+    "missing_event_ids": [],
+    "unexpected_event_ids": [],
+    "duplicate_events": 0,
+    "event_errors": 0,
+    "aggregate_errors": [],
+    "ok": true
+  },
+  "metrics": {
+    "processed_records": 100000,
+    "pause_s": 3.558304,
+    "recovery_s": 2.912447,
+    "throughput_window_s": 10,
+    "events_in_window": 58185,
+    "window_complete": false,
+    "throughput_events_s": null
+  }
+}
