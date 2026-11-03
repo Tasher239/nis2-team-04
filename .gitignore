@@ -1,5 +1,10 @@
 .venv/
 __pycache__/
+.pytest_cache/
+.ruff_cache/
+.idea/
+.tclaude-docker.status
+.env
 output/
 data/purchases-large.jsonl
 data/generated/
